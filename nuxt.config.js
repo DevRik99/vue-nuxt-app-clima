@@ -11,7 +11,14 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        type: 'text/css',
+        href: 'https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css',
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -46,6 +53,7 @@ export default {
     plugins: [
       'utc', // import 'dayjs/plugin/utc'
       'timezone', // import 'dayjs/plugin/timezone'
+      'relativeTime', // import 'dayjs/plugin/timezone'
     ], // Your Day.js plugin
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

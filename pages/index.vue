@@ -1,18 +1,8 @@
 <template>
-  <b-container class="m-auto rounded">
-    <b-row class="bg-white">
-      <b-col sm="12">
-        <h3 class="text-center">{{ weather.name }}</h3>
-      </b-col>
-      <b-col sm="12">
-        <p class="text-center">{{ new Date().toGMTString() }}</p>
-      </b-col>
-      <b-col>
-        <h5>{{ weather.weather }}</h5>
-        <img
-          :src="`https://openweathermap.org/img/w/${weather.weather[0].icon}.png`"
-          alt=""
-        />
+  <b-container class="mx-auto my-5 rounded">
+    <b-row class="p-3">
+      <b-col md="12">
+        <WeatherCard :weather="weather"></WeatherCard>
       </b-col>
     </b-row>
   </b-container>
@@ -32,33 +22,33 @@ export default Vue.extend({
         },
         weather: [
           {
-            id: 802,
+            id: 804,
             main: 'Clouds',
-            description: 'scattered clouds',
-            icon: '03d',
+            description: 'overcast clouds',
+            icon: '04d',
           },
         ],
         base: 'stations',
         main: {
-          temp: 295.28,
-          feels_like: 294.25,
-          temp_min: 295.28,
-          temp_max: 295.28,
-          pressure: 1006,
-          humidity: 27,
-          sea_level: 1006,
-          grnd_level: 702,
+          temp: 12.13,
+          feels_like: 11.49,
+          temp_min: 12.13,
+          temp_max: 12.13,
+          pressure: 1014,
+          humidity: 80,
+          sea_level: 1014,
+          grnd_level: 699,
         },
         visibility: 10000,
         wind: {
-          speed: 1.61,
-          deg: 104,
-          gust: 4.19,
+          speed: 5.18,
+          deg: 119,
+          gust: 5.69,
         },
         clouds: {
-          all: 48,
+          all: 90,
         },
-        dt: 1634232749,
+        dt: 1634247943,
         sys: {
           country: 'PE',
           sunrise: 1634207761,
@@ -88,13 +78,11 @@ export default Vue.extend({
 </script>
 <style>
 body {
-  background-color: whitesmoke;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 100vw;
+  background-color: #e7fbff;
+  max-width: 100vw;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  font-family: Open Sans, sans-serif;
 }
 .bg-white {
   background-color: white;
