@@ -8,25 +8,29 @@
     >
       <p class="temperature-title">Temperatura</p>
       <h1 class="temperature-temperature">{{ weather.main.temp }}°</h1>
-      <p class="temperature-min">Min: {{ weather.main.temp_min }}°</p>
-      <p class="temperature-max">Max: {{ weather.main.temp_max }}°</p>
+      <p class="temperature-min mx-1">Min: {{ weather.main.temp_min }}°</p>
+      <p class="temperature-max mx-1">Max: {{ weather.main.temp_max }}°</p>
     </b-col>
     <b-col sm="12" md="4" lg="6" class="weather-description my-3">
-      <p class="my-2 my-md-0">
-        {{ $dayjs(new Date()).format('MMMM D, YYYY') }}
+      <p class="my-2 my-md-0 text-center w-100 font-weight-bold">
+        {{
+          weather.dt
+            ? $dayjs.unix(weather.dt).format('dddd, MMMM D, YYYY h:mm A')
+            : $dayjs(new Date()).format('MMMM D, YYYY')
+        }}
       </p>
       <h5 class="my-2 my-md-0">
         <i class="bx bxs-map"></i>
         {{ weather.name || 'En algun lugar de la tierra' }}
       </h5>
-      <p class="my-2 my-md-0">
+      <p class="my-2 my-md-0" v-if="weather.sys.sunrise">
         Amanecer :
         <WeatherTime
           :time="weather.sys.sunrise"
           class="d-inline-block font-weight-bold"
         ></WeatherTime>
       </p>
-      <p class="my-2 my-md-0">
+      <p class="my-2 my-md-0" v-if="weather.sys.sunset">
         puesta de sol :
         <WeatherTime
           :time="weather.sys.sunset"
@@ -60,7 +64,7 @@ export default {
   },
   methods: {
     getIcon(weather) {
-      const icon = weather[0].icon
+      const icon = weather[0].icon.replace(/n/g, 'd')
       const iconsList = {
         '01d': { icon: 'sunny', title: 'cielo despejado' },
         '02d': { icon: 'cloudy', title: 'pocas nubes' },
